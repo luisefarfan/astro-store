@@ -25,7 +25,7 @@ const path = url.pathname;
   </a>
   <span>Página {currentPage} de {totalPages}</span>
   <a
-    href={`${path}?page=${Math.max(currentPage + 1, totalPages)}`}
+    href={`${path}?page=${Math.min(currentPage + 1, totalPages)}`}
     class="button"
     href=""
     >Siguiente
