@@ -4,8 +4,11 @@ import Pagination from '@/components/shared/Pagination.astro';
 import MainLayout from '@/layouts/MainLayout.astro';
 import { actions } from 'astro:actions';
 
+const searchParams = Astro.url.searchParams;
+const pageParam = Number(searchParams.get('page') ?? 1);
+
 const { data, error } = await actions.getProductsByPage({
-  page: 1,
+  page: pageParam,
 });
 
 if (error) {
