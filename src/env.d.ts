@@ -14,3 +14,13 @@ declare namespace App {
     isAdmin: boolean;
   }
 }
+
+interface ImportMetaEnv {
+  readonly AUTH_TRUST_HOST: string;
+  readonly AUTH_SECRET: string;
+  readonly PUBLIC_URL: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
