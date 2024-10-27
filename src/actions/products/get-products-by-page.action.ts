@@ -41,9 +41,6 @@ export const getProductsByPage = defineAction({
 
     const { rows }: { rows: unknown } = await db.run(productsQuery)
 
-    console.log(rows);
-
-
     return {
       products: rows as ProductWithImages[],
       totalPages: totalPages

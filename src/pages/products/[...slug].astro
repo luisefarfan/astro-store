@@ -57,6 +57,9 @@ const { product, images } = data;
 </MainLayout>
 
 <script>
+  import { itemsInCart } from '@/store/cart.store';
+  import { CartCookiesClient } from '@/utils';
+
   const sizeElements = document.querySelectorAll('[data-size]');
 
   sizeElements.forEach((sizeElement) => {
@@ -94,13 +97,17 @@ const { product, images } = data;
       return alert('Selecciona un tamaño');
     }
 
-    addToCartButton.disabled = true;
+    // addToCartButton.disabled = true;
 
-    console.log({
-      id: productIdInput.value,
+    const updatedCart = CartCookiesClient.addItem({
+      productId: productIdInput.value,
       size: size,
-      quantity: quantityInput.value,
+      quantity: Number(quantityInput.value),
     });
+
+    itemsInCart.set(updatedCart.length);
+
+    // window.location.href = '/cart';
   });
 </script>
 
