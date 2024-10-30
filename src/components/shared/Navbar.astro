@@ -44,10 +44,12 @@ const { isLoggedIn, user, isAdmin } = Astro.locals;
 <script>
   const { signOut } = await import('auth-astro/client');
 
-  const logoutElem = document.querySelector('#logout') as HTMLLIElement;
+  document.addEventListener('astro:page-load', () => {
+    const logoutElem = document.querySelector('#logout') as HTMLLIElement;
 
-  logoutElem?.addEventListener('click', async () => {
-    await signOut();
-    window.location.href = '/';
+    logoutElem?.addEventListener('click', async () => {
+      await signOut();
+      window.location.href = '/';
+    });
   });
 </script>
