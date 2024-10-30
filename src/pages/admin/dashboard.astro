@@ -1,0 +1,67 @@
+---
+import ProductImage from '@/components/products/ProductImage.astro';
+import Pagination from '@/components/shared/Pagination.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Formatter } from '@/utils';
+import { actions } from 'astro:actions';
+
+const searchParams = Astro.url.searchParams;
+const pageParam = Number(searchParams.get('page') ?? 1);
+
+const { data, error } = await actions.getProductsByPage({
+  page: pageParam,
+});
+
+// TODO Error handling
+if (error) {
+  return Astro.redirect('/');
+}
+
+const { products, totalPages } = data;
+---
+
+<MainLayout title="Dashboard">
+  <h1>Dashboard</h1>
+  <p>Listado de productos</p>
+
+  <!-- Posible Tanstack table -->
+  <table class="w-full mt-2">
+    <thead>
+      <tr>
+        <th class="text-left">Imagen</th>
+        <th class="text-left">Titulo</th>
+        <th class="text-left">Precio</th>
+        <th class="text-left">Inventario</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {
+        products.map((product) => (
+          <tr>
+            <td class="text-left">
+              {/* TODO Default image */}
+              <ProductImage
+                src={product.images.split(',').at(0) ?? 'default image'}
+                alt={product.title}
+                className="w-16 h-16"
+              />
+            </td>
+            <td class="text-left">
+              <a
+                class="hover:underline cursor-pointer"
+                href={`/admin/products/${product.slug}`}
+              >
+                {product.title}
+              </a>
+            </td>
+            <td class="text-left">{Formatter.currency(product.price)}</td>
+            <td class="text-left">{product.stock}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <Pagination totalPages={totalPages} />
+</MainLayout>
