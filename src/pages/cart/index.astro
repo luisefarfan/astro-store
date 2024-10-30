@@ -86,6 +86,7 @@ const total = products.reduce(
 </MainLayout>
 
 <script>
+  import { itemsInCart } from '@/store';
   import { CartCookiesClient } from '@/utils';
   import { navigate } from 'astro:transitions/client';
 
@@ -98,7 +99,9 @@ const total = products.reduce(
         const productId = deleteButton.dataset.id ?? '';
         const size = deleteButton.dataset.size ?? '';
 
-        CartCookiesClient.removeItem(productId, size);
+        const updatedCart = CartCookiesClient.removeItem(productId, size);
+
+        itemsInCart.set(updatedCart.length);
 
         // Without view transitions
         // window.location.reload();
