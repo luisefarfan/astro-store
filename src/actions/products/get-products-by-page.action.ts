@@ -39,10 +39,17 @@ export const getProductsByPage = defineAction({
       LIMIT ${limit} OFFSET ${(page - 1) * limit};
     `
 
-    const { rows }: { rows: unknown } = await db.run(productsQuery)
+    const { rows } = await db.run(productsQuery)
+
+    const products = rows.map((product: any) => {
+      return {
+        ...product,
+        images: product.images ? product.images : 'no-image.png'
+      }
+    }) as unknown as ProductWithImages[]
 
     return {
-      products: rows as ProductWithImages[],
+      products,
       totalPages: totalPages
     }
   }
