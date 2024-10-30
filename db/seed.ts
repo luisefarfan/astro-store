@@ -13,9 +13,21 @@ export default async function seed() {
 
 	const users = [
 		// Create 5 users
-		{ id: UUID(), name: 'Jhon Doe', email: 'jhon.doe@example.com', password: bcrypt.hashSync('123456'), role: 'admin' },
-		{ id: UUID(), name: 'Jane Doe', email: 'jane.doe@example.com', password: bcrypt.hashSync('123456'), role: 'user' },
-		{ id: UUID(), name: 'Jhon Smith', email: 'jhon.smith@example.com', password: bcrypt.hashSync('123456'), role: 'user' }
+		{
+			// id: UUID(),
+			id: 'ABCD-JHON-DOE',
+			name: 'Jhon Doe', email: 'jhon.doe@example.com', password: bcrypt.hashSync('123456'), role: 'admin'
+		},
+		{
+			// id: UUID(),
+			id: 'ABCD-JANE-DOE',
+			name: 'Jane Doe', email: 'jane.doe@example.com', password: bcrypt.hashSync('123456'), role: 'user'
+		},
+		{
+			// id: UUID(),
+			id: 'ABCD-JOHN-SMITH',
+			name: 'Jhon Smith', email: 'jhon.smith@example.com', password: bcrypt.hashSync('123456'), role: 'user'
+		}
 	]
 
 	await db.insert(Role).values(roles)
