@@ -19,6 +19,9 @@ interface ImportMetaEnv {
   readonly AUTH_TRUST_HOST: string;
   readonly AUTH_SECRET: string;
   readonly PUBLIC_URL: string;
+  readonly CLOUDINARY_CLOUD_NAME: string;
+  readonly CLOUDINARY_API_KEY: string;
+  readonly CLOUDINARY_API_SECRET: string;
 }
 
 interface ImportMeta {
