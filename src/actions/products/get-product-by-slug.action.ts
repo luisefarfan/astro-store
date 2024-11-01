@@ -42,6 +42,10 @@ export const getProductBySlug = defineAction({
       .from(ProductImage)
       .where(eq(ProductImage.productId, product.id))
 
-    return { product, images: images.map(i => i.image) }
+    return {
+      product,
+      // images: images.map(i => i.image)
+      images: images
+    }
   }
 })

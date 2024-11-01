@@ -1,6 +1,6 @@
 import { loginUser, logout, registerUser } from './auth';
 import { loadProductsFromCart } from './cart';
-import { createUpdateProduct, getProductBySlug, getProductsByPage } from './products';
+import { createUpdateProduct, deleteProductImage, getProductBySlug, getProductsByPage } from './products';
 
 export const server = {
   // actions
@@ -14,5 +14,6 @@ export const server = {
   getProductBySlug,
 
   loadProductsFromCart,
-  createUpdateProduct
+  createUpdateProduct,
+  deleteProductImage
 };

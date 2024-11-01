@@ -220,7 +220,7 @@ const { product, images } = data;
         </div>
 
         <!-- Slideshow -->
-        <ProductSlideshow images={images} />
+        <ProductSlideshow images={images.map((i) => i.image)} />
 
         <table class="w-full border">
           <thead>
@@ -232,16 +232,22 @@ const { product, images } = data;
           <tbody>
             {
               images.map((image) => (
-                <tr class="border">
+                <tr class="border" id={image.id}>
                   <td class="flex justify-center">
                     <ProductImage
-                      src={image}
+                      src={image.image}
                       alt={product.title}
                       className="w-16 h-16 rounded"
                     />
                   </td>
                   <td class="text-center">
-                    <button class="btn-delete-image">X</button>
+                    <button
+                      data-id={image.id}
+                      type="button"
+                      class="btn-delete-image"
+                    >
+                      X
+                    </button>
                   </td>
                 </tr>
               ))
@@ -294,6 +300,27 @@ const { product, images } = data;
       }
 
       navigate(`/admin/products/${data.product.slug}`);
+    });
+
+    // Eliminar imagenes
+    const btnDeleteImages = document.querySelectorAll('.btn-delete-image');
+    console.log(btnDeleteImages);
+    btnDeleteImages.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const id = btn.getAttribute('data-id');
+
+        if (!id) {
+          return alert('No se pudo eliminar la imagen');
+        }
+
+        const { data, error } = await actions.deleteProductImage(id);
+
+        if (error) {
+          return alert('No se pudo eliminar la imagen');
+        }
+
+        document.getElementById(id)?.remove();
+      });
     });
   });
 </script>

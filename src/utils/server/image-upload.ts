@@ -18,4 +18,21 @@ export class ImageUpload {
 
     return response.secure_url
   }
+
+  static async delete(imageUrl: string) {
+    try {
+      const imageName = imageUrl.split('/').pop() ?? ''
+
+      const imageId = imageName.split('.').at(0) ?? ''
+
+      const resp = await cloudinary.uploader.destroy(imageId)
+
+      console.info('Image deleted', resp)
+
+      return true
+    } catch (error) {
+      console.error(error)
+      return false
+    }
+  }
 }
