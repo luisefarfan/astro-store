@@ -19,11 +19,5 @@ export default defineConfig({
   // adapter: netlify()
   integrations: [tailwind(), db(), auth(), react()],
 
-  adapter: cloudflare(),
-
-  vite: {
-    ssr: {
-      external: ['crypto', 'node:path', 'querystring'],
-    },
-  },
+  adapter: cloudflare()
 });
