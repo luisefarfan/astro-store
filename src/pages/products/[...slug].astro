@@ -15,7 +15,7 @@ const { product, images } = data;
 
 const seoImage = images.at(0)?.image.startsWith('http')
   ? images.at(0)?.image
-  : `${import.meta.env.PUBLIC_URL}/products/${images.at(0)?.image}`;
+  : `${import.meta.env.PUBLIC_URL}/images/products/${images.at(0)?.image}`;
 ---
 
 <MainLayout
