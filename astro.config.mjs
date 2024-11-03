@@ -10,14 +10,17 @@ import auth from 'auth-astro';
 
 import react from '@astrojs/react';
 
-import cloudflare from '@astrojs/cloudflare';
+import vercel from '@astrojs/vercel/serverless';
+
+// import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
 
   // adapter: netlify()
+  // adapter: cloudflare()
   integrations: [tailwind(), db(), auth(), react()],
 
-  adapter: cloudflare()
+  adapter: vercel()
 });
