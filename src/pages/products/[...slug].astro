@@ -12,12 +12,16 @@ if (error) {
 }
 
 const { product, images } = data;
+
+const seoImage = images.at(0)?.image.startsWith('http')
+  ? images.at(0)?.image
+  : `${import.meta.env.PUBLIC_URL}/products/${images.at(0)?.image}`;
 ---
 
 <MainLayout
   title={product.title}
   description={product.description}
-  image={images.at(0)?.image}
+  image={seoImage}
 >
   <!-- <h1>{product.title}</h1> -->
 
