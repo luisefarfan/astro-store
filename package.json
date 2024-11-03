@@ -2,10 +2,6 @@
   "name": "07-auth-js",
   "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": ">=20.17.0",
-    "npm": ">=10.8.2"
-  },
   "scripts": {
     "dev": "astro dev",
     "dev:remote": "astro dev --remote",
