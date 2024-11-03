@@ -23,7 +23,7 @@ export default defineConfig({
 
   vite: {
     ssr: {
-      external: ['bcryptjs'],
+      external: ['bcryptjs', 'node:path'],
     },
   },
 });
