@@ -23,7 +23,7 @@ export default defineConfig({
 
   vite: {
     ssr: {
-      external: ['crypto', 'node:path'],
+      external: ['crypto', 'node:path', 'querystring'],
     },
   },
 });
